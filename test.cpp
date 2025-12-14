@@ -1,11 +1,11 @@
 #include "pch.h" // Wymagane w Visual Studio (precompiled header)
-#include "C:\Users\henry\Desktop\Projekty Zaawansowane\Zadanie3\Zadanie3\MergeSorter.h" // Œcie¿ka do Twojego pliku nag³ówkowego
+#include "C:\Users\henry\Desktop\Projekty Zaawansowane\Zadanie3\Zadanie3\MergeSorter.h"
 #include <vector>
 #include <algorithm> // Do std::sort (jako wzorzec)
 #include <random>    // Do generowania losowych liczb
 
-// Funkcja pomocnicza do weryfikacji poprawnoœci sortowania
-// Przyjmuje wektor danych wejœciowych, kopiuje go do tablicy, sortuje i sprawdza wynik
+// Funkcja pomocnicza do weryfikacji poprawnoÅ“ci sortowania
+// Przyjmuje wektor danych wejÅ“ciowych, kopiuje go do tablicy, sortuje i sprawdza wynik
 template <typename T>
 void verifySort(const std::vector<T>& inputData) {
     int size = inputData.size();
@@ -19,7 +19,7 @@ void verifySort(const std::vector<T>& inputData) {
         }
     }
 
-    // Przygotowanie danych oczekiwanych (u¿ywamy std::sort jako wyroczni)
+    // Przygotowanie danych oczekiwanych (uÂ¿ywamy std::sort jako wyroczni)
     std::vector<T> expectedData = inputData;
     std::sort(expectedData.begin(), expectedData.end());
 
@@ -29,18 +29,18 @@ void verifySort(const std::vector<T>& inputData) {
 
     // Asercje - sprawdzamy element po elemencie
     for (int i = 0; i < size; i++) {
-        // ASSERT_EQ przerywa test w przypadku b³êdu, EXPECT_EQ kontynuuje
+        // ASSERT_EQ przerywa test w przypadku bÂ³Ãªdu, EXPECT_EQ kontynuuje
         EXPECT_EQ(expectedData[i], arrayToSort[i])
             << "Blad na indeksie " << i << " dla wartosci oczekiwanej " << expectedData[i];
     }
 
-    // Sprz¹tanie
+    // SprzÂ¹tanie
     if (size > 0) {
         delete[] arrayToSort;
     }
 }
 
-// --- 1. Tablica ju¿ posortowana rosn¹co ---
+// --- 1. Tablica juÂ¿ posortowana rosnÂ¹co ---
 TEST(MergeSortTest, AlreadySorted) {
     std::vector<int> data = { 1, 2, 3, 4, 5, 10, 20 };
     verifySort(data);
@@ -70,7 +70,7 @@ TEST(MergeSortTest, MixedPositiveAndNegative) {
     verifySort(data);
 }
 
-// --- 6. Pusta tablica (nie powinna rzucaæ wyj¹tku) ---
+// --- 6. Pusta tablica (nie powinna rzucaÃ¦ wyjÂ¹tku) ---
 TEST(MergeSortTest, EmptyArray) {
     std::vector<int> data = {};
     // Testujemy czy nie ma crasha (segmentation fault)
@@ -101,28 +101,28 @@ TEST(MergeSortTest, MixedDuplicates) {
     verifySort(data);
 }
 
-// --- 11. Tylko dwa elementy w kolejnoœci rosn¹cej ---
+// --- 11. Tylko dwa elementy w kolejnoÅ“ci rosnÂ¹cej ---
 TEST(MergeSortTest, TwoElementsSorted) {
     std::vector<int> data = { 10, 20 };
     verifySort(data);
 }
 
-// --- 12. Du¿a tablica (>100 elementów) ---
+// --- 12. DuÂ¿a tablica (>100 elementÃ³w) ---
 TEST(MergeSortTest, LargeArrayInt) {
     std::vector<int> data;
-    // Generowanie 150 elementów
+    // Generowanie 150 elementÃ³w
     for (int i = 150; i > 0; --i) {
         data.push_back(i);
     }
     verifySort(data);
 }
 
-// --- 13. Du¿a tablica (>100 elementów) z liczbami ujemnymi, dodatnimi i duplikatami ---
+// --- 13. DuÂ¿a tablica (>100 elementÃ³w) z liczbami ujemnymi, dodatnimi i duplikatami ---
 TEST(MergeSortTest, LargeArrayComplex) {
-    std::vector<double> data; // U¿ywamy double, ¿eby sprawdziæ te¿ inny typ danych
+    std::vector<double> data; // UÂ¿ywamy double, Â¿eby sprawdziÃ¦ teÂ¿ inny typ danych
 
     // Generowanie danych pseudolosowych
-    // U¿ywamy sta³ego seeda, ¿eby testy by³y powtarzalne
+    // UÂ¿ywamy staÂ³ego seeda, Â¿eby testy byÂ³y powtarzalne
     std::mt19937 gen(42);
     std::uniform_real_distribution<> dis(-100.0, 100.0);
 
@@ -130,7 +130,6 @@ TEST(MergeSortTest, LargeArrayComplex) {
         data.push_back(dis(gen));
     }
 
-    // Dodajemy rêcznie kilka duplikatów dla pewnoœci
     data.push_back(50.5);
     data.push_back(50.5);
     data.push_back(-20.1);
